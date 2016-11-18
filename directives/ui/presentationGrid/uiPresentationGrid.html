@@ -1,0 +1,10 @@
+﻿<div id="{{id1}}" class="uiPresentationGridContainer">
+	<div id="{{id2}}" class="uiPresentationGrid">
+		<div ng-repeat="item in content track by $index" 
+			id="gi_{{item.index}}" 
+			class="uiPresentationGridPanel {{item.content.className}}" 
+			style="width:{{item.size.cx}}px;height:{{item.size.cy}}px;left:{{item.pos.x}}px;top:{{item.pos.y}}px" 
+			ui-repeat-insert>
+		</div>
+	</div>
+</div>

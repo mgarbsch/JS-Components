@@ -1,0 +1,13 @@
+﻿ui-content-gallery {
+	position: relative;
+	height: auto;
+}
+ui-content-gallery > div {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+}
+.uiGalleryPanel {
+	position: absolute;
+	overflow: hidden;
+}

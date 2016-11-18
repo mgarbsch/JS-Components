@@ -1,0 +1,33 @@
+﻿ui-presentation-grid {
+	position: relative;
+	height: auto;
+}
+ui-presentation-grid > div {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+}
+.uiPresentationGridContainer {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	background-color: #c0c0c0;
+}
+.uiPresentationGrid {
+	position: relative;
+	margin: 0 auto;
+	min-width: 200px;
+	min-height: 200px;
+	overflow: hidden;
+	background-color: #c0c0c0;
+}
+.uiPresentationGridPanel {
+	position: absolute;
+	overflow: hidden;
+	min-width: 32px;
+	min-height: 32px;
+	background-color: #ffffff;
+	border: 1px solid #808080;
+	color: #000000;
+	padding: 2px 4px;
+}

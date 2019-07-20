@@ -54,9 +54,9 @@ SOFTWARE.
 class ApiService {
 	constructor(name, config) {
 		// Public Properties
-		this.name = name;
-		this.config = config;
-		this.baseUrl = '';
+		this._name = name;
+		this._config = config;
+		this._baseUrl = '';
 		// Private Properties
 		this._events = {
 			names: ['onerror'],
@@ -67,6 +67,10 @@ class ApiService {
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	///////////////////////////////////////////////////////////////////////////////////////////////
+	get name() { return this._name; }
+	get baseURL() { return this._baseUrl; }
+	set baseURL(url) { this._baseUrl = url; }
+	
 	addEndpoint(path, method, route, headerNames, transform, collectionName) {
 		method = method.toUpperCase();
 		headerNames = headerNames || null;
@@ -187,7 +191,7 @@ class ApiService {
 			let self = this;
 			return new Promise((resolve, reject) => {
 				let headers = self._buildHeaders(headerNames);
-				let url = self.baseUrl + self._genUrlSuffix(route, params);
+				let url = self._baseUrl + self._genUrlSuffix(route, params);
 				HttpRequest.send(url, 'GET', null, headers).then((res) => {
 					res.data = self._parseObj(res.data);
 					if (collectionName && typeof collectionName === 'string' && Array.isArray(res.data)) {
@@ -213,7 +217,7 @@ class ApiService {
 			let self = this;
 			return new Promise((resolve, reject) => {
 				let headers = self._buildHeaders(headerNames);
-				let url = self.baseUrl + self._genUrlSuffix(route, params);
+				let url = self._baseUrl + self._genUrlSuffix(route, params);
 				HttpRequest.send(url, 'POST', body, headers).then((res) => { 
 					res.data = self._parseObj(res.data);
 					if (collectionName && typeof collectionName === 'string' && Array.isArray(res.data)) {
@@ -240,7 +244,7 @@ class ApiService {
 			let self = this;
 			return new Promise((resolve, reject) => {
 				let headers = self._buildHeaders(headerNames);
-				let url = self.baseUrl + self._genUrlSuffix(route, params);
+				let url = self._baseUrl + self._genUrlSuffix(route, params);
 				HttpRequest.send(url, 'PUT', body, headers).then((res) => {
 					res.data = self._parseObj(res.data);
 					if (callback) {
@@ -264,7 +268,7 @@ class ApiService {
 			let self = this;
 			return new Promise((resolve, reject) => {
 				let headers = self._buildHeaders(headerNames);
-				let url = self.baseUrl + self._genUrlSuffix(route, params);
+				let url = self._baseUrl + self._genUrlSuffix(route, params);
 				HttpRequest.send(url, 'DELETE', null, headers).then((res) => {
 					res.data = self._parseObj(res.data);
 					if (callback) callback(res);
@@ -303,7 +307,7 @@ class ApiService {
 		if (names !== null) {
 			headers = {};
 			for (var i=0; i<names.length; i++) {
-				headers[names[i]] = this._mapConfigValue(names[i], this.config);
+				headers[names[i]] = this._mapConfigValue(names[i], this._config);
 			}
 		}
 		return headers;

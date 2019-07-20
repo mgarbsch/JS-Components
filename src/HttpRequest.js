@@ -43,7 +43,7 @@ class HttpRequest {
 			return xhr;
 		};
 		let convertBody = function(body, headers) {
-			if (headers['Content-Type']) {
+			if (headers && headers['Content-Type']) {
 				switch (headers['Content-Type']) {
 					case 'application/json': body = (typeof body === 'string') ? body : JSON.stringify(body); break;
 				}
